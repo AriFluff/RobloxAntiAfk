@@ -1,0 +1,42 @@
+-- Variables
+local UI = Instance.new("ScreenGui")
+local Text = Instance.new("TextLabel")
+local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
+
+-- Properties
+UI.Name = "UI"
+UI.Parent = game.CoreGui
+UI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+UI.IgnoreGuiInset = true
+
+Text.Name = "Text"
+Text.Parent = UI
+Text.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Text.BackgroundTransparency = 1.000
+Text.Position = UDim2.new(0.0576619245, 0, 0.0189573467, 0)
+Text.Size = UDim2.new(0.251184821, 0, 0.0268562399, 0)
+Text.Font = Enum.Font.GothamBold
+Text.Text = "AFK: Enabled | Fluff#8168"
+Text.TextColor3 = Color3.fromRGB(0, 0, 0)
+Text.TextScaled = true
+Text.TextSize = 14.000
+Text.TextWrapped = true
+
+UIAspectRatioConstraint.Parent = Text
+UIAspectRatioConstraint.AspectRatio = 18.706
+
+-- AFK Aspect
+game:GetService("StarterGui"):SetCore("ChatMakeSystemMessage",{
+	Text = "Fluff#8618: Anti-afk Enabled!",
+	Color = Color3.fromRGB(0, 179, 255)
+})
+
+local vu = game:GetService("VirtualUser")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+	vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+	wait(1)
+	vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
+
+print("Completed Setup! | Fluff#8618")
+
